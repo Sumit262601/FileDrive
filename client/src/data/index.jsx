@@ -5,13 +5,13 @@ import DocumentIcon from "@/assets/icons/document.svg";
 
 // Helper function to format data sizes
 const formatDataSize = (sizeInKB) => {
-  if (sizeInKB >= 1024 * 1024) return `${(sizeInKB / (1024 * 1024)).toFixed(2)} GB`;
-  if (sizeInKB >= 1024) return `${(sizeInKB / 1024).toFixed(2)} MB`;
-  if (sizeInKB >= 1) return `${sizeInKB.toFixed(2)} KB`;
+  if (sizeInKB >= 1024 * 1024) return `${(sizeInKB / (1024 * 1024))} GB`;
+  if (sizeInKB >= 1024) return `${(sizeInKB / 1024)} MB`;
+  if (sizeInKB >= 1) return `${sizeInKB} KB`;
   return `${(sizeInKB * 1024)} Bytes`;
 };
 
-const exampleDataSizeInKB = 1024; // Example value in KB
+const exampleDataSizeInKB = 1024;
 
 export const chartConfig = {
   image: {
@@ -35,7 +35,7 @@ export const chartConfig = {
   document: {
     label: "Document",
     color: "hsl(var(--chart-4))",
-    data: formatDataSize(exampleDataSizeInKB),
+    data: formatDataSize(150),
     url: DocumentIcon,
   },
 };

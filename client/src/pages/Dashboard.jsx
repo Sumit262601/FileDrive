@@ -1,5 +1,9 @@
 import { chartConfig } from "@/data/index";
 import { Progress } from "@/components/ui/progress"
+import StorageAreaChart from "@/charts/AreaChat";
+import StoragePieChart from "@/charts/PieChart";
+import StorageBarChart from "@/charts/BarChart";
+import DataTable from "@/data/Table";
 
 const Dashboard = () => {
   return (
@@ -26,7 +30,7 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* <div className="flex lg:flex-row flex-col gap-4 mb-6">
+      <div className="flex lg:flex-row flex-col gap-4 mb-6">
         <div className="w-full lg:w-full">
           <StorageBarChart />
         </div>
@@ -42,7 +46,7 @@ const Dashboard = () => {
         <div className="w-full lg:w-full">
           <StorageAreaChart />
         </div>
-      </div> */}
+      </div>
 
     </div>
   );

@@ -17,7 +17,35 @@ import Dashboard from "@/pages/Dashboard";
 import Favourites from "@/pages/Favourites";
 import Files from "@/pages/Files";
 import Trash from "@/pages/Trash";
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { FaSun, FaRegMoon } from 'react-icons/fa';
+import { Link, useLocation } from "react-router-dom";
+
+const DarkModeToggle = () => {
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") !== "false";
+  });
+
+  useEffect(() => {
+    const darkModeClass = "dark";
+    if (isDarkMode) {
+      document.documentElement.classList.add(darkModeClass);
+    } else {
+      document.documentElement.classList.remove(darkModeClass);
+    }
+    localStorage.setItem("darkMode", isDarkMode.toString());
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  return (
+    <button onClick={toggleDarkMode} className="px-4 text-xl">
+      {isDarkMode ? <FaSun /> : <FaRegMoon />}
+    </button>
+  );
+};
 
 export default function Page() {
 
@@ -25,7 +53,7 @@ export default function Page() {
 
   const renderContent = () => {
     switch (location.pathname) {
-      case "/":
+      case "/dashboard":
         return { component: <Dashboard />, title: "Dashboard" };
       case "/files":
         return { component: <Files />, title: "Files" };
@@ -44,28 +72,30 @@ export default function Page() {
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
-          <div className="flex items-center gap-2 px-4">
-            <SidebarTrigger className="-ml-1" />
-            <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
+          <div className="flex justify-between items-center gap-2 px-4 w-full">
+            <div className="flex items-center gap-2">
+              <SidebarTrigger className="ml-1" />
+              <Separator orientation="vertical" className="mr-2 h-4" />
+              <BreadcrumbList className="font-semibold text-xl">
+                <BreadcrumbItem className="md:block hidden">
+                  <Link to="/">
                     FileDrive
-                  </BreadcrumbLink>
+                  </Link>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
+                <BreadcrumbSeparator className="md:block hidden" />
                 <BreadcrumbItem>
                   <BreadcrumbPage>{title}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
-            </Breadcrumb>
+            </div>
+            <DarkModeToggle />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+        <div className="flex flex-col p-6 justify-between min-h-screen">
           <div className="flex-grow">
             {component}
           </div>
+          {/* <Footer /> */}
         </div>
       </SidebarInset>
     </SidebarProvider>)
