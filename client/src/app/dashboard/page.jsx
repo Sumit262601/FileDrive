@@ -1,8 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import {
-  Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -16,36 +14,10 @@ import {
 import Dashboard from "@/pages/Dashboard";
 import Favourites from "@/pages/Favourites";
 import Files from "@/pages/Files";
+import Footer from "@/pages/Footer";
 import Trash from "@/pages/Trash";
-import { useEffect, useState } from "react";
-import { FaSun, FaRegMoon } from 'react-icons/fa';
 import { Link, useLocation } from "react-router-dom";
-
-const DarkModeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    return localStorage.getItem("darkMode") !== "false";
-  });
-
-  useEffect(() => {
-    const darkModeClass = "dark";
-    if (isDarkMode) {
-      document.documentElement.classList.add(darkModeClass);
-    } else {
-      document.documentElement.classList.remove(darkModeClass);
-    }
-    localStorage.setItem("darkMode", isDarkMode.toString());
-  }, [isDarkMode]);
-
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  return (
-    <button onClick={toggleDarkMode} className="px-4 text-xl">
-      {isDarkMode ? <FaSun /> : <FaRegMoon />}
-    </button>
-  );
-};
+import DarkModeToggle from "../layout/DarkMode";
 
 export default function Page() {
 
@@ -95,7 +67,7 @@ export default function Page() {
           <div className="flex-grow">
             {component}
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </SidebarInset>
     </SidebarProvider>)

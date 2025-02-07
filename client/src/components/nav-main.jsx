@@ -1,3 +1,5 @@
+"use client"
+
 import { ChevronRight } from "lucide-react";
 
 import {
@@ -22,15 +24,15 @@ export function NavMain({
 }) {
   return (
     (<SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>Explore</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
             <SidebarMenuItem>
-              <SidebarMenuButton asChild tooltip={item.title}>
+              <SidebarMenuButton className="mb-2" asChild tooltip={item.title}>
                 <a href={item.url}>
                   <item.icon />
-                  <span>{item.title}</span>
+                  <span className="font-semibold">{item.title}</span>
                 </a>
               </SidebarMenuButton>
               {item.items?.length ? (

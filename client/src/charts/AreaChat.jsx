@@ -1,98 +1,91 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { Bar, BarChart, XAxis, YAxis } from "recharts"
 
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card"
 import {
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
 } from "@/components/ui/chart"
-const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-]
 
-const chartConfig = {
-    desktop: {
-        label: "Desktop",
-        color: "hsl(var(--chart-1))",
-    },
-    mobile: {
-        label: "Mobile",
-        color: "hsl(var(--chart-2))",
-    },
+import { barChartData, chartConfig } from "@/data/index"
+
+const StorageBarChart = () => {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Total Storage used</CardTitle>
+        <CardDescription>
+          155.57 MB
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="py-4">
+        <ChartContainer config={chartConfig}>
+          <BarChart accessibilityLayer data={barChartData}>
+            <XAxis
+              dataKey="month"
+              tickLine={true}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={(value) => value.slice(0, 3)}
+            />
+            <YAxis
+              tickLine={true}
+              axisLine={false}
+              tickMargin={3}
+              tickCount={10}
+            />
+            {['image', 'video', 'audio', 'document'].map((key) => (
+              <Bar
+                key={key}
+                dataKey={key}
+                stackId="a"
+                fill={`var(--color-${key})`}
+                radius={[6, 6, 0, 0]}
+              />
+            ))}
+            <ChartTooltip
+              content={
+                <ChartTooltipContent
+                  hideLabel
+                  className="w-[180px]"
+                  formatter={(value, name,) => (
+                    <>
+                      <div
+                        className="h-2.5 w-1 shrink-0 rounded-[2px] bg-[--color-bg]"
+                        style={
+                          {
+                            "--color-bg": `var(--color-${name})`,
+                          }
+                        }
+                      />
+                      {chartConfig[name]?.label || name}
+                      <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
+                        {value}
+                        <span className="font-normal text-muted-foreground">
+                          MB
+                        </span>
+                      </div>
+                    </>
+                  )}
+                />
+              }
+              cursor={false}
+              defaultIndex={1}
+            />
+          </BarChart>
+        </ChartContainer>
+      </CardContent>
+    </Card>
+  )
 }
 
-const StorageAreaChart = () => {
-    return (
-        <Card>
-            <CardHeader>
-                <CardTitle>Line Chart - Multiple</CardTitle>
-                <CardDescription>January - June 2024</CardDescription>
-            </CardHeader>
-            <CardContent>
-                <ChartContainer config={chartConfig}>
-                    <LineChart
-                        accessibilityLayer
-                        data={chartData}
-                        margin={{
-                            left: 12,
-                            right: 12,
-                        }}
-                    >
-                        <CartesianGrid vertical={false} />
-                        <XAxis
-                            dataKey="month"
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={8}
-                            tickFormatter={(value) => value.slice(0, 3)}
-                        />
-                        <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-                        <Line
-                            dataKey="desktop"
-                            type="monotone"
-                            stroke="var(--color-desktop)"
-                            strokeWidth={2}
-                            dot={false}
-                        />
-                        <Line
-                            dataKey="mobile"
-                            type="monotone"
-                            stroke="var(--color-mobile)"
-                            strokeWidth={2}
-                            dot={false}
-                        />
-                    </LineChart>
-                </ChartContainer>
-            </CardContent>
-            <CardFooter>
-                <div className="flex w-full items-start gap-2 text-sm">
-                    <div className="grid gap-2">
-                        <div className="flex items-center gap-2 font-medium leading-none">
-                            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-                        </div>
-                        <div className="flex items-center gap-2 leading-none text-muted-foreground">
-                            Showing total visitors for the last 6 months
-                        </div>
-                    </div>
-                </div>
-            </CardFooter>
-        </Card>
-    )
-}
 
-export default StorageAreaChart;
+export default StorageBarChart;

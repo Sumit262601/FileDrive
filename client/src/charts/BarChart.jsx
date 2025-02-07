@@ -43,7 +43,7 @@ const StorageBarChart = () => {
                 dataKey={key}
                 stackId="a"
                 fill={`var(--color-${key})`}
-                radius={[6, 6, 0, 0]}
+                radius={[4, 4, 4, 4]}
               />
             ))}
             <ChartTooltip
