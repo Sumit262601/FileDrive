@@ -1,4 +1,4 @@
-import { Table } from "@tanstack/react-table"
+// import { Table } from "@tanstack/react-table"
 import {
   ChevronLeft,
   ChevronRight,
@@ -6,22 +6,16 @@ import {
   ChevronsRight,
 } from "lucide-react"
 
-import { Button } from "@/registry/new-york/ui/button"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select"
+} from "@/components/ui/select"
 
-interface DataTablePaginationProps<TData> {
-  table: Table<TData>
-}
-
-export function DataTablePagination<TData>({
-  table,
-}: DataTablePaginationProps<TData>) {
+const DataTablePagination = ({ table }) => {
   return (
     <div className="flex items-center justify-between px-2">
       <div className="flex-1 text-sm text-muted-foreground">
@@ -95,3 +89,5 @@ export function DataTablePagination<TData>({
     </div>
   )
 }
+
+export default DataTablePagination;

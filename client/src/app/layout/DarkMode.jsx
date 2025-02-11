@@ -1,9 +1,12 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import { FaSun, FaRegMoon } from 'react-icons/fa';
+import { Toggle } from "@/components/ui/toggle"
+import { Button } from '@/components/ui/button';
+
 
 const DarkModeToggle = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {  
+  const [isDarkMode, setIsDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") !== "false";
   });
 
@@ -22,9 +25,9 @@ const DarkModeToggle = () => {
   };
 
   return (
-    <button onClick={toggleDarkMode} className="px-4 text-xl">
+    <Button variant="outline" onClick={toggleDarkMode} size="icon">
       {isDarkMode ? <FaSun /> : <FaRegMoon />}
-    </button>
+    </Button>
   );
 };
 

@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Row } from "@tanstack/react-table"
-import { MoreHorizontal } from "lucide-react"
+import { MoreHorizontal } from "lucide-react";
+// import { Row } from "@tanstack/react-table";
 
-import { Button } from "@/registry/new-york/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,19 +16,13 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
-import { labels } from "../data/data"
-import { taskSchema } from "../data/schema"
+import { labels } from "../data/data";
+import { taskSchema } from "../data/schema";
 
-interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
-}
-
-export function DataTableRowActions<TData>({
-  row,
-}: DataTableRowActionsProps<TData>) {
-  const task = taskSchema.parse(row.original)
+const DataTableRowActions = ({ row }) => {
+  const task = taskSchema.parse(row.original);
 
   return (
     <DropdownMenu>
@@ -65,5 +59,7 @@ export function DataTableRowActions<TData>({
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
-}
+  );
+};
+
+export default DataTableRowActions;

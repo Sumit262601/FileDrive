@@ -3,7 +3,7 @@ import { Progress } from "@/components/ui/progress"
 import StorageAreaChart from "@/charts/AreaChat";
 import StoragePieChart from "@/charts/PieChart";
 import StorageBarChart from "@/charts/BarChart";
-import DataTable from "@/data/Table";
+import DataTable from "@/pages/Table";
 
 const Dashboard = () => {
   return (

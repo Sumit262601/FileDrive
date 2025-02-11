@@ -11,13 +11,14 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import Dashboard from "@/pages/Dashboard";
-import Favourites from "@/pages/Favourites";
-import Files from "@/pages/Files";
-import Footer from "@/pages/Footer";
-import Trash from "@/pages/Trash";
+import Dashboard from "@/app/dashboard/Dashboard";
+import Favourites from "@/app/dashboard/Favourites";
+import Files from "@/app/dashboard/Files";
+import Footer from "@/app/dashboard/Footer";
+import Trash from "@/app/dashboard/Trash";
 import { Link, useLocation } from "react-router-dom";
 import DarkModeToggle from "../layout/DarkMode";
+import UserNav from "@/components/user-nav";
 
 export default function Page() {
 
@@ -60,7 +61,10 @@ export default function Page() {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </div>
+            <div className="flex items-center gap-4 px-4">
             <DarkModeToggle />
+            <UserNav />
+            </div>
           </div>
         </header>
         <div className="flex flex-col p-6 justify-between min-h-screen">
