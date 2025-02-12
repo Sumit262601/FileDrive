@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import { FaSun, FaRegMoon } from 'react-icons/fa';
-import { Toggle } from "@/components/ui/toggle"
+import { FaRegMoon } from 'react-icons/fa';
+import { FiSun } from "react-icons/fi";
 import { Button } from '@/components/ui/button';
 
 
@@ -26,7 +26,7 @@ const DarkModeToggle = () => {
 
   return (
     <Button variant="outline" onClick={toggleDarkMode} size="icon">
-      {isDarkMode ? <FaSun /> : <FaRegMoon />}
+      {isDarkMode ? <FaRegMoon /> : <FiSun />}
     </Button>
   );
 };

@@ -7,6 +7,8 @@ import {
   Star,
   FileText,
   LayoutDashboard,
+  LifeBuoy,
+  Send
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -20,6 +22,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Link } from "react-router-dom"
+import { NavSecondary } from "./nav-secondary"
 
 const data = {
   user: {
@@ -59,12 +63,20 @@ const data = {
         {
           title: "Profile",
           url: "/profile",
-        },
-        {
-          title: "Landing Page",
-          url: "/",
-        },
+        }
       ],
+    },
+  ],
+  navSecondary: [
+    {
+      title: "Support",
+      url: "/support",
+      icon: LifeBuoy,
+    },
+    {
+      title: "Feedback",
+      url: "/feedback",
+      icon: Send,
     },
   ]
 }
@@ -78,7 +90,7 @@ export function AppSidebar({
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <a href="#">
+              <Link to="/dashboard">
                 <div
                   className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                   <UserRound className="size-4" />
@@ -87,7 +99,7 @@ export function AppSidebar({
                   <span className="truncate font-semibold">User Name</span>
                   <span className="truncate text-xs">example@gmail.com</span>
                 </div>
-              </a>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
@@ -95,11 +107,9 @@ export function AppSidebar({
 
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
 
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
     </Sidebar>)
   );
 }

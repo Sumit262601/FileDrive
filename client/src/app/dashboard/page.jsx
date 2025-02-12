@@ -41,7 +41,7 @@ export default function Page() {
   const { component, title } = renderContent();
 
   return (
-    (<SidebarProvider>
+    (<SidebarProvider >
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2">
@@ -55,15 +55,15 @@ export default function Page() {
                     FileDrive
                   </Link>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator className="md:block hidden" />
+                <BreadcrumbSeparator className="md:block hidden" /> 
                 <BreadcrumbItem>
                   <BreadcrumbPage>{title}</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </div>
             <div className="flex items-center gap-4 px-4">
-            <DarkModeToggle />
-            <UserNav />
+              <DarkModeToggle />
+              <UserNav />
             </div>
           </div>
         </header>
