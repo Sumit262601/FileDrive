@@ -3,18 +3,18 @@ import { Progress } from "@/components/ui/progress"
 import StorageAreaChart from "@/charts/AreaChat";
 import StoragePieChart from "@/charts/PieChart";
 import StorageBarChart from "@/charts/BarChart";
-import DataTable from "@/pages/Table";
+import { TableDemo } from "./TableDemo";
 
 const Dashboard = () => {
   return (
     <div className='flex flex-col flex-1 gap-4 mb-5'>
       <div className="gap-4 grid md:grid-cols-4 mb-6 sm:grid-cols-2">
         {Object.keys(chartConfig).map((key) => (
-          <div key={chartConfig[key].label} className="bg-sidebar shadow-xl border-2 border-accent p-5 rounded-xl h-60">
-            <div className="mb-6">
-              <img src={chartConfig[key].url} alt={chartConfig[key].label} width={55} />
+          <div key={chartConfig[key].label} className="bg-sidebar shadow-xl border-2 p-4 border-accent rounded-xl size-full">
+            <div className="mb-3">
+              <img src={chartConfig[key].url} alt={chartConfig[key].label} width={45} />
             </div>
-            <div className="mb-12">
+            <div className="mb-6">
               <span className='font-semibold text-xl'>
                 {chartConfig[key].label}
               </span>
@@ -30,23 +30,25 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <div className="flex lg:flex-row flex-col gap-4 mb-6">
-        <div className="w-full lg:w-full">
+      <div className="flex flex-col lg:flex-row gap-4 mb-6">
+        <div className="w-full lg:w-1/2">
           <StorageBarChart />
         </div>
-        <div className="rounded-xl w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 rounded-xl">
           <StoragePieChart />
         </div>
       </div>
 
-      <div className="flex lg:flex-row flex-col gap-4 mb-6">
-        <div className="rounded-xl w-full">
-          <DataTable />
+      <div className="flex flex-col lg:flex-row gap-10 mb-6">
+        <div className="w-full ">
+          <TableDemo />
         </div>
-        <div className="w-full lg:w-full">
+        <div className="w-full lg:w-10/12">
           <StorageAreaChart />
         </div>
       </div>
+
+
 
     </div>
   );

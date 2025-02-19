@@ -11,13 +11,13 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import TaskPage from '@/pages/Table';
+import TaskPage from '@/app/dashboard/Table';
 
 const Files = () => {
   return (
     <>
       <div className="flex justify-between items-center mb-12">
-        <h1 className="font-semibold text-2xl">Manage Files</h1>
+        <h1 className="font-semibold text-3xl">Manage Files</h1>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button>
@@ -36,7 +36,7 @@ const Files = () => {
                 New File
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              
+
               <DropdownMenuItem>
                 <DropdownMenuShortcut>
                   <HiMiniFolder />

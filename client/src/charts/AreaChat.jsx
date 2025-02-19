@@ -1,11 +1,13 @@
 "use client"
 
-import { Bar, BarChart, XAxis, YAxis } from "recharts"
+import { TrendingUp } from "lucide-react"
+import { CartesianGrid, Dot, Line, LineChart } from "recharts"
 
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -14,78 +16,101 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+const chartData = [
+  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
+  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+]
 
-import { barChartData, chartConfig } from "@/data/index"
+const chartConfig = {
+  visitors: {
+    label: "Visitors",
+    color: "hsl(var(--chart-2))",
+  },
+  chrome: {
+    label: "Chrome",
+    color: "hsl(var(--chart-1))",
+  },
+  safari: {
+    label: "Safari",
+    color: "hsl(var(--chart-2))",
+  },
+  firefox: {
+    label: "Firefox",
+    color: "hsl(var(--chart-3))",
+  },
+  edge: {
+    label: "Edge",
+    color: "hsl(var(--chart-4))",
+  },
+  other: {
+    label: "Other",
+    color: "hsl(var(--chart-5))",
+  },
+}
 
-const StorageBarChart = () => {
+const StorageAreaChart = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Total Storage used</CardTitle>
-        <CardDescription>
-          155.57 MB
-        </CardDescription>
+        <CardTitle>Line Chart - Dots Colors</CardTitle>
+        <CardDescription>January - June 2024</CardDescription>
       </CardHeader>
-      <CardContent className="py-4">
+      <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={barChartData}>
-            <XAxis
-              dataKey="month"
-              tickLine={true}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <YAxis
-              tickLine={true}
-              axisLine={false}
-              tickMargin={3}
-              tickCount={10}
-            />
-            {['image', 'video', 'audio', 'document'].map((key) => (
-              <Bar
-                key={key}
-                dataKey={key}
-                stackId="a"
-                fill={`var(--color-${key})`}
-                radius={[6, 6, 0, 0]}
-              />
-            ))}
+          <LineChart
+            accessibilityLayer
+            data={chartData}
+            margin={{
+              top: 24,
+              left: 24,
+              right: 24,
+            }}
+          >
+            <CartesianGrid vertical={false} />
             <ChartTooltip
+              cursor={false}
               content={
                 <ChartTooltipContent
+                  indicator="line"
+                  nameKey="visitors"
                   hideLabel
-                  className="w-[180px]"
-                  formatter={(value, name,) => (
-                    <>
-                      <div
-                        className="h-2.5 w-1 shrink-0 rounded-[2px] bg-[--color-bg]"
-                        style={
-                          {
-                            "--color-bg": `var(--color-${name})`,
-                          }
-                        }
-                      />
-                      {chartConfig[name]?.label || name}
-                      <div className="ml-auto flex items-baseline gap-0.5 font-mono font-medium tabular-nums text-foreground">
-                        {value}
-                        <span className="font-normal text-muted-foreground">
-                          MB
-                        </span>
-                      </div>
-                    </>
-                  )}
                 />
               }
-              cursor={false}
-              defaultIndex={1}
             />
-          </BarChart>
+            <Line
+              dataKey="visitors"
+              type="natural"
+              stroke="var(--color-visitors)"
+              strokeWidth={2}
+              dot={({ payload, ...props }) => {
+                return (
+                  <Dot
+                    key={payload.browser}
+                    r={5}
+                    cx={props.cx}
+                    cy={props.cy}
+                    fill={payload.fill}
+                    stroke={payload.fill}
+                  />
+                )
+              }}
+            />
+          </LineChart>
         </ChartContainer>
       </CardContent>
+      <CardFooter className="flex-col items-start gap-2 text-sm">
+        <div className="flex gap-2 font-medium leading-none">
+          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Showing total visitors for the last 6 months
+        </div>
+      </CardFooter>
     </Card>
   )
 }
 
-
-export default StorageBarChart;
+export default StorageAreaChart;

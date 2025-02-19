@@ -15,7 +15,7 @@ module.exports = {
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			card: {
-    				DEFAULT: 'hsl(var(--card) / 0.2)',
+    				DEFAULT: 'hsl(var(--card))',
     				foreground: 'hsl(var(--card-foreground))'
     			},
     			popover: {
@@ -32,17 +32,17 @@ module.exports = {
     			},
     			muted: {
     				DEFAULT: 'hsl(var(--muted))',
-    				foreground: 'hsl(var(--muted-foreground) / 0.6)'
+    				foreground: 'hsl(var(--muted-foreground))'
     			},
     			accent: {
-    				DEFAULT: 'hsl(var(--accent) / 0.15)',
+    				DEFAULT: 'hsl(var(--accent))',
     				foreground: 'hsl(var(--accent-foreground))'
     			},
     			destructive: {
     				DEFAULT: 'hsl(var(--destructive))',
     				foreground: 'hsl(var(--destructive-foreground))'
     			},
-    			border: 'hsl(var(--border) / 0.1)',
+    			border: 'hsl(var(--border))',
     			input: 'hsl(var(--input))',
     			ring: 'hsl(var(--ring))',
     			chart: {
@@ -171,6 +171,17 @@ module.exports = {
     				'100%': {
     					opacity: '1'
     				}
+    			},
+    			shine: {
+    				'0%': {
+    					'background-position': '0% 0%'
+    				},
+    				'50%': {
+    					'background-position': '100% 100%'
+    				},
+    				to: {
+    					'background-position': '0% 0%'
+    				}
     			}
     		},
     		animation: {
@@ -178,7 +189,8 @@ module.exports = {
     			'accordion-up': 'accordion-up 0.2s ease-out',
     			appear: 'appear 0.6s forwards ease-out',
     			'appear-zoom': 'appear-zoom 0.6s forwards ease-out',
-    			'pulse-hover': 'pulse-hover 6s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+    			'pulse-hover': 'pulse-hover 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+    			shine: 'shine var(--duration) infinite linear'
     		},
     		spacing: {
     			container: '1280px'
