@@ -44,7 +44,7 @@ export default function Page() {
     (<SidebarProvider >
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2">
+        <header className="flex h-16 shrink-0 items-center">
           <div className="flex justify-between items-center gap-2 px-4 w-full">
             <div className="flex items-center gap-2">
               <SidebarTrigger className="ml-1" />

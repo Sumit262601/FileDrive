@@ -16,12 +16,12 @@ import { barChartData, chartConfig } from "@/data/index";
 
 const StorageBarChart = () => {
   return (
-    <Card>
+    <Card className="flex flex-col h-[100%]">
       <CardHeader>
         <CardTitle>Total Storage used</CardTitle>
         <CardDescription>155.57 MB</CardDescription>
       </CardHeader>
-      <CardContent className="py-4">
+      <CardContent className="py-8 h-[100%]">
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={barChartData}>
             <XAxis
